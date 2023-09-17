@@ -1,6 +1,6 @@
 const path = require('path');
 const rootPath = __dirname;
-require('dotenv').config({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`) });
+require('dotenv').config();
 
 let dbUrl = process.env.DB_URL; // Добавил URL базы данных по умолчанию
 let jwtSecret = process.env.JWT_SECRET; // Добавил секретный ключ JWT по умолчанию

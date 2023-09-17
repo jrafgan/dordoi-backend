@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cards = require('./app/cards');
 const users = require('./app/users');
-require('dotenv').config({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`) });
+require('dotenv').config();
 
 const app = express();
 

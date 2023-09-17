@@ -1,7 +1,7 @@
 const SKU = require("../models/SKU");
 const jwt = require("jsonwebtoken");
 const config = require('../config');
-require('dotenv').config({ path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`) });
+require('dotenv').config();
 
 const duration = process.env.JWT_EXPIRATION_TIME;
 
