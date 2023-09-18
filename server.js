@@ -1,5 +1,6 @@
 const express = require('express');
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const config = require('./config');
 const cors = require('cors');
@@ -11,7 +12,8 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT;
-
+const certificatePath = process.env.PATH_CERTIFICATE;
+const keyCertificate = process.env.PATH_CERTIFICATE_KEY;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -24,13 +26,20 @@ mongoose.connect(config.dbUrl, config.mongoOptions).then(() => {
     app.use('/cards', cards);
     app.use('/users', users);
 
-    https.createServer({
-        key: fs.readFileSync('/var/www/httpd-cert/dordoi-optom.kg_2023-09-18-07-15_43.key'),  // Укажите путь к вашему ключу
-        cert: fs.readFileSync('/var/www/httpd-cert/dordoi-optom.kg_2023-09-18-07-15_43.crt') // Укажите путь к вашему сертификату
-    }, app).listen(port, () => {
-        console.log(`Server started on ${port} port`);
-    });
+    if (process.env.NODE_ENV === 'development') {
+        app.listen(port, () => {
+            console.log(`Server started on ${port} port`);
+        });
+    } else {
+        https.createServer({
+            key: fs.readFileSync(keyCertificate),  // Укажите путь к вашему ключу
+            cert: fs.readFileSync(certificatePath) // Укажите путь к вашему сертификату
+        }, app).listen(port, () => {
+            console.log(`Server started on ${port} port`);
+        });
+    }
 });
+;
 
 
 // const express = require('express');

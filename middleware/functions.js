@@ -3,8 +3,11 @@ const jwt = require("jsonwebtoken");
 const config = require('../config');
 require('dotenv').config();
 
-const duration = process.env.JWT_EXPIRATION_TIME;
-
+let duration = process.env.JWT_EXPIRATION_TIME;
+// if (typeof duration === 'string') {
+//     duration = Number(duration)
+// }
+console.log('jwt duration : ', duration);
 const createToken = (userId) => {
     return jwt.sign({userId}, config.jwtSecret, {expiresIn: duration});
 };
