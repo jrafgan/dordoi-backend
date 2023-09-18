@@ -4,6 +4,7 @@ require('dotenv').config();
 
 let dbUrl = process.env.DB_URL; // Добавил URL базы данных по умолчанию
 let jwtSecret = process.env.JWT_SECRET; // Добавил секретный ключ JWT по умолчанию
+console.log('jwt secret : ', jwtSecret);
 
 if (process.env.NODE_ENV === 'development') {
     dbUrl = 'mongodb://localhost/dordoi';
