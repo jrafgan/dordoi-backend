@@ -10,6 +10,8 @@ const users = require('./app/users');
 require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT;
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,8 +27,8 @@ mongoose.connect(config.dbUrl, config.mongoOptions).then(() => {
     https.createServer({
         key: fs.readFileSync('/var/www/httpd-cert/dordoi-optom.kg_2023-09-18-07-15_43.key'),  // Укажите путь к вашему ключу
         cert: fs.readFileSync('/var/www/httpd-cert/dordoi-optom.kg_2023-09-18-07-15_43.crt') // Укажите путь к вашему сертификату
-    }, app).listen(config.port, () => {
-        console.log(`Server started on ${config.port} port`);
+    }, app).listen(port, () => {
+        console.log(`Server started on ${port} port`);
     });
 });
 
