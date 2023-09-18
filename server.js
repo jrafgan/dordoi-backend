@@ -39,7 +39,6 @@ mongoose.connect(config.dbUrl, config.mongoOptions).then(() => {
         });
     }
 });
-;
 
 
 // const express = require('express');
