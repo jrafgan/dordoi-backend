@@ -78,7 +78,7 @@ router.post('/', auth, upload.array('images'), async (req, res) => {
         for (const file of uploadedFiles) {
             selectedImages.push({
                 type: file.fieldname, // Здесь можете указать тип файла, если он имеется
-                url: `https://dordoi-optom.kg/uploads/${file.filename}`, // Путь к загруженному файлу в каталоге uploads
+                url: `https://dordoi-optom.kg:8003/uploads/${file.filename}`, // Путь к загруженному файлу в каталоге uploads
                 fileName: file.originalname, // Имя файла
             });
         }
